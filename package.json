@@ -9,13 +9,17 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "gsap": "^3.12.2",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
-    "sass": "^1.68.0"
+    "sass": "^1.68.0",
+    "three": "^0.157.0"
   },
   "devDependencies": {
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "glsl-shader-loader": "^0.1.6",
+    "raw-loader": "^4.0.2"
   }
 }

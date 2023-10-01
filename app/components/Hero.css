@@ -1,0 +1,132 @@
+.grid-container {
+    display: flex;
+    /* Устанавливаем тип отображения на flex */
+    width: 100%;
+    /* Занимаем всю ширину родительского элемента */
+    height: 100vh;
+    /* Занимаем всю высоту видимой области */
+    padding: 50px;
+    /* Отступы от краев экрана */
+    box-sizing: border-box;
+    /* Учитываем padding и border в общем размере */
+    justify-content: space-between;
+    /* Распределяет дочерние элементы равномерно по контейнеру */
+}
+
+.large-box {
+    flex-basis: calc(50% - 60px);
+    margin-right: 50px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right-section {
+    display: flex;
+    /* Устанавливаем тип отображения на flex */
+    flex-direction: column;
+    /* Ориентация дочерних элементов по вертикали */
+    flex-basis: calc(30%);
+    /* Учитываем отступ между блоками и доп. отступ от центра */
+    gap: 20px;
+    /* Расстояние между верхним и нижним блоками */
+}
+
+.top-box {
+    flex: 2;
+    /* Занимает две трети доступного пространства */
+    width: 100%;
+    /* Занимаем всю ширину родительского элемента */
+
+}
+
+.upper-container,
+.lower-container {
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+.lower-container svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom-box {
+    flex: 1;
+    /* Занимает одну треть доступного пространства */
+    width: 100%;
+    /* Занимаем всю ширину родительского элемента */
+    display: flex;
+    align-items: center;
+    /* Выравниваем содержимое по центру по вертикали */
+    justify-content: flex-start;
+    /* Выравниваем содержимое по левому краю */
+    /* Небольшой отступ слева для красоты */
+}
+
+.magnet-button {
+    width: 240px;
+    /* Увеличиваем ширину */
+    height: 240px;
+    /* Увеличиваем высоту */
+    border: 2px solid #dca76d;
+    background-color: transparent;
+    color: white;
+    font-size: 36px;
+    /* Увеличиваем размер шрифта */
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 120px;
+    /* Обновляем радиус, равный половине новой ширины/высоты кнопки */
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+}
+
+
+
+
+
+
+
+
+
+@media (max-width: 768px) {
+    .grid-container {
+        padding-left: 0;
+        /* Убираем левый padding у .grid-container */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        /* Фиксированная высота */
+    }
+
+    .large-box {
+        margin-left: 0;
+        flex-basis: auto;
+        /* Сброс значения flex-basis */
+        margin-right: 0;
+        /* Сброс правого отступа */
+        width: 100%;
+        /* Занимает всю ширину родительского элемента */
+        justify-content: center;
+        /* Выравнивание содержимого по центру */
+    }
+
+    .right-section {
+        flex-basis: auto;
+        /* Сброс значения flex-basis */
+        width: 100%;
+        /* Занимает всю ширину родительского элемента */
+    }
+
+    .hide-on-mobile {
+        display: none;
+    }
+}
