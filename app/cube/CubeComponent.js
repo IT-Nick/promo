@@ -29,6 +29,9 @@ function CubeComponent() {
     
     uniform float time; // Время для анимации
 
+    vec3 baseCoffeeColor = vec3(220.0/255.0, 167.0/255.0, 109.0/255.0); // #dca76d
+
+    
     // Функции для генерации шума
     vec3 mod289(vec3 x) {
         return x - floor(x * (1.0 / 289.0)) * 289.0;
@@ -115,24 +118,26 @@ float snoise(vec3 v) {
     void main() {
       // Простое искажение на основе координат текстуры и нормали
       vec2 distortedUv = vUv + vNormal.xy * 0.1;
-    
-      // Создаем радужный эффект на основе искаженных UV-координат и времени
-      float rainbowX = abs(snoise(vec3(distortedUv.x + time, distortedUv.y, 0.0)));
-      float rainbowY = abs(snoise(vec3(distortedUv.x, distortedUv.y + time, 0.0)));
-      float rainbowZ = abs(snoise(vec3(distortedUv.x, distortedUv.y, time)));
-      vec3 rainbowColor = vec3(rainbowX, rainbowY, rainbowZ);
-    
+  
+      // Создаем эффект на основе искаженных UV-координат и времени
+      float noiseX = abs(snoise(vec3(distortedUv.x + time, distortedUv.y, 0.0)));
+      float noiseY = abs(snoise(vec3(distortedUv.x, distortedUv.y + time, 0.0)));
+      float noiseZ = abs(snoise(vec3(distortedUv.x, distortedUv.y, time)));
+      
+      // Модулируем кофейный цвет шумом
+      vec3 coffeeShade = baseCoffeeColor * (0.5 + 0.5 * vec3(noiseX, noiseY, noiseZ));
+      
       // Имитация искажения цвета на основе искаженных UV-координат и времени
       float distortion = sin((distortedUv.x + time) * 10.0) * sin((distortedUv.y + time) * 10.0);
-    
+  
       // Вычисляем значение Гауссовой функции для размытия
-      float blurAmount = gaussian(length(distortedUv - 0.5), 0.7); // Увеличьте 0.4 для более сильного размытия
-    
-      // Применяем радужный эффект и размытие к фрагменту
-      gl_FragColor = vec4(rainbowColor, 0.5) + vec4(distortion, distortion, distortion, 0.0) * 0.1;
+      float blurAmount = gaussian(length(distortedUv - 0.5), 0.7);
+  
+      // Применяем эффект кофейных оттенков и размытие к фрагменту
+      gl_FragColor = vec4(coffeeShade, 0.5) + vec4(distortion, distortion, distortion, 0.0) * 0.1;
       gl_FragColor.rgb *= mix(1.0, blurAmount, 0.5); // Применяем размытие к цвету, усиливая его на 50%
-      gl_FragColor.a /= 2.0; // Увеличиваем прозрачность в 7 раз
-    }
+      gl_FragColor.a /= 3.0; // Увеличиваем прозрачность в 2 раза
+  }
   `
   };
 
@@ -189,10 +194,12 @@ float snoise(vec3 v) {
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         transparent: true,
-        side: THREE.DoubleSide
+        side: THREE.DoubleSide,
+        opacity: 1,
+        depthWrite: false
       });
 
-      const planeGeometry = new THREE.PlaneGeometry(1.8, 1.8); //(1.8, 1.8);
+      const planeGeometry = new THREE.PlaneGeometry(1.8, 1.8);
       planeGeometry.translate(0, -0.1, -0.8);
 
       const plane = new THREE.Mesh(planeGeometry, material);
@@ -223,7 +230,7 @@ float snoise(vec3 v) {
     cubeGroup.rotation.y += 0.001;
 
     // Получаем SVG плоскость из cubeGroup
-    const plane = cubeGroup.children.find(child => child.isMesh && child.material.map);
+    const plane = scene.children.find(child => child.isMesh && child.material.map);
 
     // Если плоскость с SVG найдена, то обновляем ее положение и ориентацию
     if (plane) {

@@ -57,7 +57,7 @@ function Hero() {
                             <text x="0" y="200" fontFamily="Inter" fontWeight="500" fontSize="40" fill="white" textAnchor="start">
                                 Виниры E-MAX
                             </text>
-                            <text x="0" y="260" fontFamily="Inter" fontWeight="500" fontSize="40" fill="red" textAnchor="start">
+                            <text x="0" y="260" fontFamily="Inter" fontWeight="500" fontSize="40" fill="#dca76d" textAnchor="start">
                                 45 000 ₽
                             </text>
                             <text x="190" y="240" fontFamily="Inter" fontWeight="normal" fontSize="24" fill="white" textDecoration="line-through" fillOpacity="0.8" textAnchor="start">
