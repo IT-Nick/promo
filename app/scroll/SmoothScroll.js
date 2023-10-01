@@ -4,8 +4,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { CustomEase } from "gsap/dist/CustomEase";
 import './Style.css';
-import Hero from "../components/Hero";
-import BeforeAfter from "../components/BeforeAfter";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,7 +15,7 @@ function ScrollSection() {
     useEffect(() => {
         const ctx = gsap.context((self) => {
             gsap.to(sectionPin.current, {
-                y: 500,
+                y: 600,
                 scrollTrigger: {
                     trigger:  main.current,
                     start: 'top top',
@@ -33,10 +31,105 @@ function ScrollSection() {
     return (
         <div ref={main}>
             <div className="scroll-section">
-            <Hero />
-            <Hero />
-            <BeforeAfter sectionPin={sectionPin}/>
-            <Hero />
+                <div ref={sectionPin} className="scrol-2">
+                    <h1 className='title'>asdasd</h1>
+
+
+                </div>
+                <p>
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+
+
+
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+
+            <p>
+            video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+                video video video video video video video video video
+            </p>
+           
+
             </div>
         </div>
 
