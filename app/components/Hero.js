@@ -35,43 +35,44 @@ function Hero() {
 
 
     return (
-        <div className="grid-container">
-            <div className="large-box">
-                <svg viewBox="0 0 400 338" xmlns="http://www.w3.org/2000/svg">
-                    <text x="0" y="90" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3">Клинике</text>
-                    <text x="0" y="157" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3" dy="15">Dr. Elmar —</text>
-                    <text x="0" y="225" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3" dy="30">10 лет!</text>
-                </svg>
-            </div>
-            <div className="right-section">
-                <div className="top-box">
-                    <div className="upper-container"></div>
-                    <div className="lower-container">
-                        <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
-                            <text x="0" y="30" fontFamily="Inter" fontWeight="normal" fontSize="24" fill="white" textAnchor="start" className="hide-on-mobile">
-                                В честь Дня рождения мы
-                                <tspan x="0" dy="30">запускаем акцию на установку</tspan>
-                                <tspan x="0" dy="30">самых качественных виниров</tspan>
-                                <tspan x="0" dy="30">на рынке.</tspan>
-                            </text>
-                            <text x="0" y="200" fontFamily="Inter" fontWeight="500" fontSize="40" fill="white" textAnchor="start">
-                                Виниры E-MAX
-                            </text>
-                            <text x="0" y="260" fontFamily="Inter" fontWeight="500" fontSize="40" fill="#dca76d" textAnchor="start">
-                                45 000 ₽
-                            </text>
-                            <text x="190" y="240" fontFamily="Inter" fontWeight="normal" fontSize="24" fill="white" textDecoration="line-through" fillOpacity="0.8" textAnchor="start">
-                                70 000 ₽
-                            </text>
-                        </svg>
+            <div className="grid-container">
+                <div className="large-box">
+                    <svg viewBox="0 0 400 338" xmlns="http://www.w3.org/2000/svg">
+                        <text x="0" y="90" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3">Клинике</text>
+                        <text x="0" y="157" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3" dy="15">Dr. Elmar —</text>
+                        <text x="0" y="225" fontFamily="Inter" fontWeight="500" fontSize="90" fill="white" letterSpacing="-3" dy="30">10 лет!</text>
+                    </svg>
+                </div>
+                <div className="right-section">
+                    <div className="top-box">
+                        <div className="upper-container"></div>
+                        <div className="lower-container">
+                            <svg viewBox="0 0 600 300" xmlns="http://www.w3.org/2000/svg">
+                                <text x="0" y="30" fontFamily="Inter" fontWeight="normal" fontSize="24" fill="white" textAnchor="start" className="hide-on-mobile">
+                                    В честь Дня рождения мы
+                                    <tspan x="0" dy="30">запускаем акцию на установку</tspan>
+                                    <tspan x="0" dy="30">самых качественных виниров</tspan>
+                                    <tspan x="0" dy="30">на рынке.</tspan>
+                                </text>
+                                <text x="0" y="200" fontFamily="Inter" fontWeight="500" fontSize="40" fill="white" textAnchor="start">
+                                    Виниры E-MAX
+                                </text>
+                                <text x="0" y="260" fontFamily="Inter" fontWeight="500" fontSize="40" fill="#dca76d" textAnchor="start">
+                                    45 000 ₽
+                                </text>
+                                <text x="190" y="240" fontFamily="Inter" fontWeight="normal" fontSize="24" fill="white" textDecoration="line-through" fillOpacity="0.8" textAnchor="start">
+                                    70 000 ₽
+                                </text>
+                            </svg>
+                        </div>
                     </div>
-                </div>
-                <div className="bottom-box">
-                    <button className="magnet-button" id="magnetBtn">Узнать больше</button>
-                </div>
+                    <div className="bottom-box">
+                        <button className="magnet-button" id="magnetBtn">Узнать больше</button>
+                    </div>
 
-            </div>
-        </div >
+                </div>
+            </div >
+
     );
 }
 

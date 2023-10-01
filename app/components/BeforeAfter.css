@@ -1,0 +1,33 @@
+.container {
+    
+    width: 100%;
+    /* Занимаем всю ширину родительского элемента */
+    height: 100vh;
+    /* Занимаем всю высоту видимой области */
+    padding: 50px;
+    /* Отступы от краев экрана */
+    box-sizing: border-box;
+    /* Учитываем padding и border в общем размере */
+    justify-content: space-between;
+    /* Распределяет дочерние элементы равномерно по контейнеру */
+}
+
+.scrol-2 {
+    width: 100%;
+    height: auto;
+}
+
+*{
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding-left: 0;
+        /* Убираем левый padding у .grid-container */
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        /* Фиксированная высота */
+    }
+}

@@ -2,8 +2,9 @@
 // Home.js
 import React from "react";
 import CubeComponent from "./cube/CubeComponent";
-import SmoothScroll from "./scroll/SmoothScroll";
 import HeaderBar from "./components/HeaderBar";
+import Hero from "./components/Hero";
+import BeforeAfter from "./components/BeforeAfter";
 
 export default function HomeComponent() {
 
@@ -11,8 +12,10 @@ export default function HomeComponent() {
         <>
             <HeaderBar />
             <CubeComponent />
-
-            <SmoothScroll />
+            <Hero />
+            <Hero />
+            <BeforeAfter />
+            <Hero />
         </>
 
     );
