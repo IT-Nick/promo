@@ -4,22 +4,26 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { CustomEase } from "gsap/dist/CustomEase";
 import './Style.css';
+import Hero from "../components/Hero";
+import BeforeAfter from "../components/BeforeAfter";
 
 gsap.registerPlugin(ScrollTrigger);
 
 
 function ScrollSection() {
+
     const main = useRef();
+    const sectionPin = useRef();
     useEffect(() => {
         const ctx = gsap.context((self) => {
-            gsap.to(".scrol-2", {
-                x: 150,
+            gsap.to(sectionPin.current, {
+                y: 500,
                 scrollTrigger: {
-                    trigger: ".scroll-section",
+                    trigger:  main.current,
                     start: 'top top',
-                    end: 'top 20%',
+                    end: 'bottom top',
                     scrub: true,
-                    markers: true
+                    markers: true,
                 },
             });
         }, main);
@@ -27,66 +31,15 @@ function ScrollSection() {
     }, []);
 
     return (
-
-        <div className="scroll-section">
-            <div className="scrol-2">
-                <h1 className='title'>asdasd</h1>
-
-
+        <div ref={main}>
+            <div className="scroll-section">
+            <Hero />
+            <Hero />
+            <BeforeAfter sectionPin={sectionPin}/>
+            <Hero />
             </div>
-
-            <p>
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-            </p>
-            <p>
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-            </p>
-            <p>
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-            </p>
-            <p>
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-            </p>
-            <p>
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-                asdasdasda asdasda asdasd asdasd asdasd asd asd a
-            </p>
-
         </div>
+
 
     );
 }
