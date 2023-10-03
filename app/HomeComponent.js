@@ -7,7 +7,7 @@ import About from "./components/About/About";
 import BeforeAfter from "./components/BeforeAfter/BeforeAfter";
 import HowTo from "./components/HowTo/HowTo";
 import Footer from "./components/Footer/Footer";
-import Loader from "./Loader/Loader";
+import Loader from "./loader/Loader";
 
 export default function HomeComponent() {
     return (
