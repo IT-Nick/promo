@@ -1,21 +1,19 @@
 .grid-container {
     display: flex;
-    /* Устанавливаем тип отображения на flex */
     width: 100%;
-    /* Занимаем всю ширину родительского элемента */
     height: 100vh;
-    /* Занимаем всю высоту видимой области */
-    padding: 50px;
-    /* Отступы от краев экрана */
+    padding-top: 88px;
+    /* Учет высоты шапки */
+    padding-right: 50px;
+    padding-bottom: 12px;
+    /* Уменьшаем нижний отступ */
+    padding-left: 50px;
     box-sizing: border-box;
-    /* Учитываем padding и border в общем размере */
     justify-content: space-between;
-    /* Распределяет дочерние элементы равномерно по контейнеру */
 }
 
 .large-box {
-    flex-basis: calc(50% - 60px);
-    margin-right: 50px;
+    flex-basis: calc(60%);
     height: 100%;
     display: flex;
     align-items: center;
@@ -29,7 +27,7 @@
     /* Ориентация дочерних элементов по вертикали */
     flex-basis: calc(30%);
     /* Учитываем отступ между блоками и доп. отступ от центра */
-    gap: 20px;
+    gap: 10px;
     /* Расстояние между верхним и нижним блоками */
 }
 
@@ -58,6 +56,7 @@
     flex: 1;
     /* Занимает одну треть доступного пространства */
     width: 100%;
+
     /* Занимаем всю ширину родительского элемента */
     display: flex;
     align-items: center;
@@ -65,68 +64,91 @@
     justify-content: flex-start;
     /* Выравниваем содержимое по левому краю */
     /* Небольшой отступ слева для красоты */
+
 }
 
 .magnet-button {
     width: 240px;
-    /* Увеличиваем ширину */
     height: 240px;
-    /* Увеличиваем высоту */
+    min-width: 150px;
+    min-height: 150px;
     border: 2px solid #dca76d;
     background-color: transparent;
     color: white;
     font-size: 36px;
-    /* Увеличиваем размер шрифта */
     cursor: pointer;
     transition: transform 0.2s;
     border-radius: 120px;
-    /* Обновляем радиус, равный половине новой ширины/высоты кнопки */
     outline: none;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-left: 0;
+    transition: transform 0.3s ease-out;
 }
-
-
-
-
-
 
 
 
 
 @media (max-width: 768px) {
     .grid-container {
-        padding-left: 0;
-        /* Убираем левый padding у .grid-container */
         flex-direction: column;
         align-items: center;
-        justify-content: center;
-        height: 100vh;
-        /* Фиксированная высота */
+        max-height: 100vh;
+        overflow: hidden;
+        /* скрыть все, что выходит за пределы контейнера */
+        padding-top: 0;
+        /* Обнуление верхнего отступа */
+
     }
+
+    .right-section {
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* распределять пространство между блоками */
+    }
+
+    .magnet-button {
+        width: 171px;
+        /* 240 / 1.4 */
+        height: 171px;
+        /* 240 / 1.4 */
+        border-radius: 85.5px;
+        /* 120 / 1.4 */
+        font-size: 25.7px;
+        /* 36 / 1.4 */
+    }
+
 
     .large-box {
         margin-left: 0;
         flex-basis: auto;
-        /* Сброс значения flex-basis */
+        flex: 1;
+        /* Добавлено */
         margin-right: 0;
-        /* Сброс правого отступа */
         width: 100%;
-        /* Занимает всю ширину родительского элемента */
         justify-content: center;
-        /* Выравнивание содержимого по центру */
     }
 
     .right-section {
         flex-basis: auto;
-        /* Сброс значения flex-basis */
+        flex: 1;
+        /* Добавлено */
         width: 100%;
-        /* Занимает всю ширину родительского элемента */
     }
 
-    .hide-on-mobile {
-        display: none;
+    .bottom-box {
+        justify-content: center;
+    }
+
+    .top-box {
+        width: 100%;
+
+    }
+
+    .top-box svg {
+        height: 100%;
     }
 }

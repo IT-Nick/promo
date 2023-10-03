@@ -1,13 +1,49 @@
 "use client";
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useCallback } from "react";
 import * as THREE from 'three';
 import { gsap } from "gsap";
 
+function throttle(func, delay) {
+  let lastFunc;
+  let lastRan;
+  return function () {
+    const context = this;
+    const args = arguments;
+    if (!lastRan) {
+      func.apply(context, args);
+      lastRan = Date.now();
+    } else {
+      clearTimeout(lastFunc);
+      lastFunc = setTimeout(function () {
+        if ((Date.now() - lastRan) >= delay) {
+          func.apply(context, args);
+          lastRan = Date.now();
+        }
+      }, delay - (Date.now() - lastRan));
+    }
+  };
+}
+
+
 function CubeComponent() {
   const ref = useRef(null);
-  let scene, camera, renderer, cubeGroup;
-  let scale = 1;
-  let material;
+  const sceneRef = useRef(null);
+  const cameraRef = useRef(null);
+  const rendererRef = useRef(null);
+  const cubeGroupRef = useRef(null);
+  const scaleRef = useRef(1);
+  const materialRef = useRef(null);
+  const previousScrollYRef = useRef(0);
+  const planeRef = useRef(null); // Добавлено для оптимизации вызова анимации
+  const planeMaterialRef = useRef(null);
+
+  const FOV = 75;
+  const NEAR = 0.1;
+  const FAR = 1000;
+  const BOX_SIZE = 2;
+  const LIGHT_COLOR = 0xffffff;
+  const EDGE_COLOR = 0xdca76d;
+
 
   const yellowShader = {
     vertexShader: `
@@ -141,36 +177,72 @@ float snoise(vec3 v) {
   `
   };
 
+  const animate = useCallback(() => {
+    requestAnimationFrame(animate);
+    if (materialRef.current.uniforms.time) {
+      materialRef.current.uniforms.time.value += 0.001;
+    }
+    cubeGroupRef.current.rotation.x -= 0.001;
+    cubeGroupRef.current.rotation.y += 0.001;
 
-  useEffect(() => {
-    initThree();
-    const currentRef = ref.current;
+    if (planeRef.current) {
+      planeRef.current.lookAt(cameraRef.current.position);
+    }
 
-    window.addEventListener('scroll', onScroll);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      if (renderer) {
-        renderer.dispose();
-        currentRef.removeChild(renderer.domElement);
-      }
-    };
+    rendererRef.current.render(sceneRef.current, cameraRef.current);
   }, []);
 
-  const initThree = () => {
-    scene = new THREE.Scene();
-    camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    ref.current.appendChild(renderer.domElement);
+  const onScroll = useCallback(() => {
+    const currentScrollY = window.scrollY;
+    const maxScrollY = document.documentElement.scrollHeight - window.innerHeight;
 
+    const isNearStart = currentScrollY < 10;  // Находимся близко к началу
+    const isNearEnd = (maxScrollY - currentScrollY) < 10;  // Находимся близко к концу
+
+    // Если пользователь в начале или в конце страницы
+    if (isNearStart || isNearEnd) {
+      scaleRef.current = 1;  // минимальный размер
+    } else {
+      // Интерполируем значение масштаба на основе текущей позиции прокрутки
+      scaleRef.current = 20;
+    }
+
+    gsap.to(cubeGroupRef.current.scale, {
+      x: scaleRef.current,
+      y: scaleRef.current,
+      z: scaleRef.current,
+      duration: 1.5,  // увеличено с 1 до 1.5 для более плавной анимации
+      ease: "power3.out"
+    });
+
+    // Анимация изменения цвета логотипа от белого к черному в зависимости от масштаба
+    const targetColor = new THREE.Color(scaleRef.current > 1 ? "black" : "white");
+    gsap.to(planeMaterialRef.current.color, {
+      r: targetColor.r,
+      g: targetColor.g,
+      b: targetColor.b,
+      duration: 1.5,
+      ease: "power3.out"
+    });
+
+    previousScrollYRef.current = currentScrollY;
+  }, []);
+
+
+
+  const initThree = useCallback(() => {
+    sceneRef.current = new THREE.Scene();
+    cameraRef.current = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    rendererRef.current = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    rendererRef.current.setSize(window.innerWidth, window.innerHeight);
+    ref.current.appendChild(rendererRef.current.domElement);
     // Материал для граней
     const edgesMaterial = new THREE.LineBasicMaterial({ color: 0xdca76d });
 
     const geometry = new THREE.BoxGeometry(2, 2, 2);
 
     // Создаем материал для куба на основе желтого шейдера
-    material = new THREE.ShaderMaterial({
+    materialRef.current = new THREE.ShaderMaterial({
       vertexShader: yellowShader.vertexShader,
       fragmentShader: yellowShader.fragmentShader,
       transparent: true,
@@ -178,125 +250,93 @@ float snoise(vec3 v) {
       side: THREE.DoubleSide // Устанавливаем материал двусторонним
     });
 
+
     // Создаем куб с этим материалом
-    const cube = new THREE.Mesh(geometry, material);
+    const cube = new THREE.Mesh(geometry, materialRef.current);
 
     const edgesGeometry = new THREE.EdgesGeometry(geometry);
     const edges = new THREE.LineSegments(edgesGeometry, edgesMaterial);
 
-    cubeGroup = new THREE.Group();
+    const cubeGroup = new THREE.Group();
+    cubeGroupRef.current = cubeGroup;
+
     cubeGroup.add(cube);  // Сначала добавляем куб
     cubeGroup.add(edges); // Затем добавляем ребра
 
-    // Загрузка SVG как текстуры
+    // Load SVG as a texture
     const loader = new THREE.TextureLoader();
     loader.load('/Cube/Logo.svg', (texture) => {
+      texture.anisotropy = rendererRef.current.capabilities.getMaxAnisotropy();
       const material = new THREE.MeshBasicMaterial({
         map: texture,
         transparent: true,
         side: THREE.DoubleSide,
-        opacity: 1,
+        opacity: 0,
         depthWrite: false
       });
+
+      planeMaterialRef.current = material;
+
 
       const planeGeometry = new THREE.PlaneGeometry(1.8, 1.8);
       planeGeometry.translate(0, -0.1, -0.8);
 
       const plane = new THREE.Mesh(planeGeometry, material);
 
-      // Добавляем плоскость напрямую в сцену
-      scene.add(plane);
+      // Add the plane directly to the scene
+      sceneRef.current.add(plane);
+      planeRef.current = plane;  // Сохраняем ссылку на объект plane
+      // Установите начальную прозрачность логотипа в 1 после успешной загрузки
+      planeMaterialRef.current.opacity = 1;
+
+    }, undefined, (error) => {
+      console.error("Error loading texture:", error);
     });
 
-    scene.add(cubeGroup);
+    sceneRef.current.add(cubeGroup); // Only add the cubeGroup once
 
     const light = new THREE.DirectionalLight(0xffffff, 1);
     light.position.set(1, 1, 1);
-    scene.add(light);
+    sceneRef.current.add(light); // Fixed the reference error
 
-    camera.position.z = 5;
+    cameraRef.current.position.z = 5; // Fixed the reference error
     animate();
-  };
+  }, [yellowShader.vertexShader, yellowShader.fragmentShader, animate]);
 
 
-  const animate = () => {
-    requestAnimationFrame(animate);
-    // Обновляем значение time в шейдере (увеличьте это значение для более медленной анимации)
-    if (material.uniforms.time) {
-      material.uniforms.time.value += 0.001; // Увеличьте это значение для более медленной анимации
-    }
-    // Инвертируем направление вращения по оси X
-    cubeGroup.rotation.x -= 0.001; // теперь куб будет вращаться вверх
-    cubeGroup.rotation.y += 0.001;
+  useEffect(() => {
+    initThree();
 
-    // Получаем SVG плоскость из cubeGroup
-    const plane = scene.children.find(child => child.isMesh && child.material.map);
-
-    // Если плоскость с SVG найдена, то обновляем ее положение и ориентацию
-    if (plane) {
-      plane.lookAt(camera.position);
-    }
-
-    renderer.render(scene, camera);
-  };
-
-  // Добавляем переменную для отслеживания предыдущего положения скролла
-  let previousScrollY = 0;
-
-  const onScroll = () => {
-    const currentScrollY = window.scrollY;
-    const deltaY = currentScrollY - previousScrollY;
-
-    // Увеличиваем или уменьшаем масштаб в зависимости от направления прокрутки
-    if (deltaY > 0) {
-      scale += 0.20;
-    } else {
-      scale -= 0.20;
-    }
-
-    // Если достигнута верхняя граница, сразу устанавливаем масштаб на минимум
-    if (currentScrollY <= 0) {
-      scale = 1;
-    }
-
-    // Если достигнута нижняя граница, устанавливаем масштаб на максимум
-    if (currentScrollY + window.innerHeight >= document.documentElement.scrollHeight) {
-      scale = 20; // или другое максимальное значение, которое вы хотите установить
-    }
-
-    // Ограничиваем масштаб
-    scale = Math.min(Math.max(scale, 1), 20);
-
-    gsap.to(cubeGroup.scale, {
-      x: scale,
-      y: scale,
-      z: scale,
-      duration: 1,
-      ease: "power3.out"
-    });
-
-    // Изменяем прозрачность куба в зависимости от его масштаба
-    let opacity = 1;
-    if (scale >= 2 && scale < 3) {
-      opacity = 0.8;
-    } else if (scale >= 3 && scale < 4) {
-      opacity = 0.6;
-    } else if (scale >= 4) {
-      opacity = 0.4;
-    }
-
-    cubeGroup.children.forEach(child => {
-      if (child.material) {
-        gsap.to(child.material, {
-          opacity: opacity,
-          duration: 1,
-          ease: "power3.out"
-        });
+    const handleResize = () => {
+      if (cameraRef.current && rendererRef.current) {
+        cameraRef.current.aspect = window.innerWidth / window.innerHeight;
+        cameraRef.current.updateProjectionMatrix();
+        rendererRef.current.setSize(window.innerWidth, window.innerHeight);
       }
-    });
+    };
 
-    previousScrollY = currentScrollY;
-  };
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('scroll', throttle(onScroll, 1000));
+
+    // Сохраните текущее значение ref.current в переменной
+    const currentRef = ref.current;
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('scroll', onScroll);
+
+      // Улучшенная очистка ресурсов
+      sceneRef.current.children.forEach(child => {
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+      });
+      if (rendererRef.current) {
+        rendererRef.current.dispose();
+        // Используйте сохраненное значение ref вместо ref.current
+        currentRef.removeChild(rendererRef.current.domElement);
+      }
+    };
+  }, [initThree, onScroll]);
 
   return (
     <div ref={ref} style={{
@@ -305,10 +345,9 @@ float snoise(vec3 v) {
       left: '50%',
       transform: 'translate(-50%, -50%)',
       backgroundColor: "black",
-      zIndex: -1 // Это значение делает куб фоновым
+      zIndex: -1
     }}></div>
   );
-
 }
 
 export default CubeComponent;

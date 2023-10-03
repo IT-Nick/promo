@@ -1,0 +1,99 @@
+.footerGeneral {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    /* устанавливаем направление столбца */
+    justify-content: space-between;
+    height: calc(100vh - 100px);
+    /* 100px — это двойной padding (сверху и снизу) */
+}
+
+.footerLeft,
+.footerRight {
+    flex: 1;
+    /* Занимают одинаковое место */
+    max-height: calc(100vh - 150px);
+    /* уменьшим максимальную высоту, чтобы контент не выходил за границы экрана */
+    overflow-y: hidden;
+    /* добавим прокрутку, если контент будет слишком большим */
+}
+
+.footerTop {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    align-items: center;
+}
+
+.footerRight {
+    padding-left: 50px;
+    /* добавляем отступ только слева */
+    padding-right: 50px;
+    /* добавляем отступ только справа */
+    display: flex;
+    flex-direction: column;
+    /* отступ между элементами */
+    box-sizing: border-box;
+    /* чтобы паддинги включались в общую высоту элемента */
+    max-width: 400px;
+    /* фиксированная максимальная ширина */
+    margin-left: auto;
+    /* автоматический отступ слева */
+    margin-right: auto;
+    /* автоматический отступ справа */
+}
+
+.footerFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 70px;
+    /* Увеличивает верхний внутренний отступ до 100% от высоты контейнера */
+}
+
+.footerFooter span:nth-child(1) {
+    color: #FDF4E666;
+    text-decoration: underline;
+}
+
+.footerFooter span:nth-child(2) {
+    color: #FDF4E666;
+    text-align: center;
+}
+
+.footerFooter span:nth-child(3) {
+    color: #FDF4E6;
+    text-decoration: underline;
+}
+
+
+
+
+.footerRight input {
+    text-align: left;
+
+    /* выравнивание текста по левому краю */
+    /* уменьшенный отступ слева */
+
+}
+
+
+.footerRight input,
+.footerRight button {
+    max-width: 600px;
+    /* увеличенная максимальная ширина */
+    width: auto;
+    height: auto;
+    padding: 25px 50px;
+    border: 1px solid #BAA78B59;
+    background-color: transparent;
+    color: #BAA78B59;
+    font-size: 16px;
+    margin-bottom: 5px;
+    box-sizing: border-box;
+}
+
+.footerRight button {
+    cursor: pointer;
+    margin-bottom: 0;
+}

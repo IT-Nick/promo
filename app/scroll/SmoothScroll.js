@@ -5,6 +5,7 @@ import { ScrollTrigger } from "gsap/dist/ScrollTrigger";
 import { CustomEase } from "gsap/dist/CustomEase";
 import './Style.css';
 import Hero from "../components/Hero";
+import About from "../components/About";
 
 function ScrollSection() {
     const sectionRef = useRef(null);
@@ -12,41 +13,31 @@ function ScrollSection() {
 
     gsap.registerPlugin(ScrollTrigger, CustomEase);
 
-    const handleScroll = (event) => {
-        const scrollTop = window.scrollY;
-        const endPosition = triggerRef.current.offsetHeight - window.innerHeight;
-        if (scrollTop >= endPosition) {
-            window.scrollTo(0, endPosition);
-            window.removeEventListener('scroll', handleScroll);
-        }
-    }
-
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
         const pin = gsap.fromTo(
             sectionRef.current,
             {
                 translateY: 0,
             },
             {
-                translateY: '-300vh',
-                duration: 10,  // установите большее значение duration для управления скоростью анимации
-
+                translateY: 0,
+                duration: 0.01,
                 scrollTrigger: {
                     trigger: triggerRef.current,
                     start: "top top",
                     end: "bottom top",
-                    scrub: 4.6,
+                    
+                    scrub: 8.6,
                     ease: CustomEase.create("custom", "M0,0 C1.062,0.08 0.976,0.024 1,1.014 "),
                     pin: true,
-                    markers: true  // добавьте эту строку для отображения маркеров
+                    pinSpacing: false,
 
+                    markers: true
                 },
             }
         );
         return () => {
             pin.kill();
-            window.removeEventListener('scroll', handleScroll);
         };
     }, []);
 
@@ -63,13 +54,7 @@ function ScrollSection() {
                         <Hero />
                     </div>
                     <div className="scroll-section">
-                        <Hero />
-                    </div>
-                    <div className="scroll-section">
-                        <Hero />
-                    </div>
-                    <div className="scroll-section">
-                        <Hero />
+                        <About />
                     </div>
                 </div>
 

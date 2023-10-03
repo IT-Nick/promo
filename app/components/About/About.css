@@ -1,0 +1,40 @@
+.about-grid-container {
+    padding: 50px;
+    display: grid;
+    grid-template-rows: 1fr auto; /* 1fr для верхней секции, auto для нижней */
+}
+
+.about-large-box {
+    width: 100%;
+    grid-row: 1 / 2;
+}
+.about-large-box svg {
+    max-height: 100%; /* или любое другое значение, которое вам подходит */
+    display: block; /* чтобы убрать возможные отступы сверху и снизу */
+    margin: auto; /* чтобы выровнять SVG по центру по вертикали внутри large-box */
+}
+
+.about-bottom-section {
+    display: flex; /* Для горизонтального расположения дочерних элементов */
+    justify-content: space-between; /* Распределение дочерних элементов с пространством между ними */
+    grid-row: 2 / 3;
+}
+
+.about-left-box, .about-right-box {
+    flex: 1; /* Определяет, что оба блока занимают равное пространство */
+    margin-right: 20px; /* Добавление пространства между блоками */
+}
+
+.about-right-box {
+    margin-right: 0; /* Убираем отступ справа для последнего блока */
+}
+
+
+
+@media (max-width: 768px) {
+    .about-grid-container {
+        padding: 10px;
+        display: grid;
+        grid-template-rows: 1fr auto; /* 1fr для верхней секции, auto для нижней */
+    }
+}

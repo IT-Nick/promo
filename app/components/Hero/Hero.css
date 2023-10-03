@@ -1,0 +1,160 @@
+.grid-container {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    padding-top: 88px;
+    /* Учет высоты шапки */
+    padding-right: 50px;
+    padding-bottom: 30px;
+    /* Уменьшаем нижний отступ */
+    padding-left: 50px;
+    box-sizing: border-box;
+    justify-content: space-between;
+}
+
+.large-box {
+    flex-basis: calc(60%);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.right-section {
+    display: flex;
+    /* Устанавливаем тип отображения на flex */
+    flex-direction: column;
+    /* Ориентация дочерних элементов по вертикали */
+    flex-basis: calc(30%);
+    /* Учитываем отступ между блоками и доп. отступ от центра */
+    gap: 10px;
+    /* Расстояние между верхним и нижним блоками */
+}
+
+.top-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 15%;
+    /* 1/3 высоты */
+
+}
+
+
+
+
+
+.upper-container,
+.lower-container {
+    width: 100%;
+    height: 50%;
+    position: relative;
+}
+
+.lower-container svg {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.bottom-box {
+    flex: 1;
+    /* Занимает одну треть доступного пространства */
+    width: 100%;
+
+    /* Занимаем всю ширину родительского элемента */
+    display: flex;
+    align-items: center;
+    /* Выравниваем содержимое по центру по вертикали */
+    justify-content: flex-start;
+    /* Выравниваем содержимое по левому краю */
+    /* Небольшой отступ слева для красоты */
+
+}
+
+.magnet-button {
+    margin-bottom: 33.33%;
+    /* 1/3 от высоты родительского элемента */
+    width: 160px;
+    height: 160px;
+    min-width: 150px;
+    min-height: 150px;
+    border: 2px solid #dca76d;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    transition: transform 0.2s;
+    border-radius: 80px;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0;
+    transition: transform 0.3s ease-out;
+}
+
+
+@media (max-width: 768px) {
+    .grid-container {
+        flex-direction: column;
+        align-items: center;
+        max-height: 100vh;
+        overflow: hidden;
+        /* скрыть все, что выходит за пределы контейнера */
+        padding: 10px;
+        /* Обнуление верхнего отступа */
+
+    }
+
+    .right-section {
+        max-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        /* распределять пространство между блоками */
+    }
+
+    .magnet-button {
+        width: 171px;
+        /* 240 / 1.4 */
+        height: 171px;
+        /* 240 / 1.4 */
+        border-radius: 85.5px;
+        /* 120 / 1.4 */
+        font-size: 20px;
+        /* 36 / 1.4 */
+    }
+
+
+    .large-box {
+        margin-left: 0;
+        flex-basis: auto;
+        flex: 1;
+        /* Добавлено */
+        margin-right: 0;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .right-section {
+        flex-basis: auto;
+        flex: 1;
+        /* Добавлено */
+        width: 100%;
+    }
+
+    .bottom-box {
+        justify-content: center;
+    }
+
+    .top-box {
+        width: 100%;
+
+    }
+
+    .top-box svg {
+        height: 100%;
+    }
+}
