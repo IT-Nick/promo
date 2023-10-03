@@ -11,19 +11,19 @@ function Loader() {
     const [isLoaded, setAllIsLoaded] = useState(false);
     const [progressValue, setProgressValue] = useState(0);
 
-
     useEffect(() => {
         const tl = gsap.timeline();
 
         // Анимация для мигания SVG
         tl.to(".loader-svg", { opacity: 0.5, yoyo: true, repeat: -1, duration: 1.5 });
+
         const imagesVideos = Array.from(document.images);
         const len = imagesVideos.length;
         let counter = 0;
 
         if (len == 0) {
             setProgressValue(100)
-            setAllIsLoaded(true)
+            setTimeout(() => setAllIsLoaded(true), 3000);  // Добавлено задержка
         }
         else {
             const loadImage = image => {
@@ -34,7 +34,7 @@ function Loader() {
                         counter++;
                         const currentProgress = Math.round((counter / len) * 100);
                         setProgressValue(currentProgress)
-                        resolve
+                        resolve();
                     }
                     loadImg.onerror = err => reject(err)
                 })
@@ -43,7 +43,7 @@ function Loader() {
             Promise.all(imagesVideos.map(image => loadImage(image)))
                 .then(() => {
                     setProgressValue(100)
-                    setAllIsLoaded(true)
+                    setTimeout(() => setAllIsLoaded(true), 3000);  // Добавлено задержка
                 })
                 .catch(err => {
                     setAllIsLoaded(true)
@@ -55,6 +55,7 @@ function Loader() {
             tl.kill();
         };
     }, []);
+
 
     useEffect(() => {
         if (isLoaded) {

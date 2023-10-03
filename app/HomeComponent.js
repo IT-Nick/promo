@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import { React, useState} from "react";
 import HeaderBar from "./components/HeaderBar";
 import CubeComponent from "./cube/CubeComponent";
 import Hero from "./components/Hero/Hero";
@@ -12,14 +13,13 @@ export default function HomeComponent() {
     return (
         <>
             <Loader />
-
             <HeaderBar />
             <CubeComponent />
             <div data-scroll-container>
                 <Hero />
                 <About />
-                <BeforeAfter />
-                <HowTo />
+                {/* <BeforeAfter />
+                <HowTo /> */}
                 <Footer />
             </div>
         </>
