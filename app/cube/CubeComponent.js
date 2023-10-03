@@ -215,15 +215,18 @@ float snoise(vec3 v) {
       ease: "power3.out"
     });
 
-    // Анимация изменения цвета логотипа от белого к черному в зависимости от масштаба
-    const targetColor = new THREE.Color(scaleRef.current > 1 ? "black" : "white");
-    gsap.to(planeMaterialRef.current.color, {
-      r: targetColor.r,
-      g: targetColor.g,
-      b: targetColor.b,
-      duration: 1.5,
-      ease: "power3.out"
-    });
+// Предположим, что начальное значение scaleRef.current = 1
+const initialScale = 1;
+
+// Анимация изменения цвета логотипа на черный при изменении scaleRef
+const targetColor = new THREE.Color(scaleRef.current !== initialScale ? "black" : "white");
+gsap.to(planeMaterialRef.current.color, {
+  r: targetColor.r,
+  g: targetColor.g,
+  b: targetColor.b,
+  duration: 1.5,
+  ease: "power3.out"
+});
 
     previousScrollYRef.current = currentScrollY;
   }, []);
