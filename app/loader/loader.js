@@ -4,17 +4,15 @@ import gsap from "gsap";
 import Image from 'next/image';
 
 function Loader() {
-
     const refLoader = useRef(null)
     const [isLoaded, setAllIsLoaded] = useState(false);
+    const [isAnimationComplete, setIsAnimationComplete] = useState(false); // новое состояние
 
     useEffect(() => {
         const tl = gsap.timeline();
 
-        // Анимация для мигания SVG
         tl.to(".loader-svg", { opacity: 0.5, yoyo: true, repeat: -1, duration: 1.5 });
 
-        // Устанавливаем задержку для лоадера в 3 секунды
         setTimeout(() => {
             setAllIsLoaded(true);
         }, 3000);
@@ -29,9 +27,12 @@ function Loader() {
             gsap.to(refLoader.current, {
                 opacity: 0,
                 duration: 1,
+                onComplete: () => setIsAnimationComplete(true) // устанавливаем состояние после завершения анимации
             });
         }
     }, [isLoaded]);
+
+    if (isAnimationComplete) return null; // если анимация завершена, не отображаем лоадер
 
     return (
         <div className="loader" ref={refLoader} style={{

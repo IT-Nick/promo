@@ -180,7 +180,7 @@ float snoise(vec3 v) {
   const animate = useCallback(() => {
     requestAnimationFrame(animate);
     if (materialRef.current.uniforms.time) {
-      materialRef.current.uniforms.time.value += 0.001;
+      materialRef.current.uniforms.time.value += 0.01;
     }
     cubeGroupRef.current.rotation.x -= 0.001;
     cubeGroupRef.current.rotation.y += 0.001;
@@ -215,18 +215,20 @@ float snoise(vec3 v) {
       ease: "power3.out"
     });
 
-// Предположим, что начальное значение scaleRef.current = 1
-const initialScale = 1;
+    // Предположим, что начальное значение scaleRef.current = 1
+    const initialScale = 1;
 
-// Анимация изменения цвета логотипа на черный при изменении scaleRef
-const targetColor = new THREE.Color(scaleRef.current !== initialScale ? "black" : "white");
-gsap.to(planeMaterialRef.current.color, {
-  r: targetColor.r,
-  g: targetColor.g,
-  b: targetColor.b,
-  duration: 1.5,
-  ease: "power3.out"
-});
+    // Анимация изменения цвета логотипа на черный при изменении scaleRef
+    const targetColor = new THREE.Color(scaleRef.current !== initialScale ? "black" : "white");
+    if (planeMaterialRef.current) {
+      gsap.to(planeMaterialRef.current.color, {
+        r: targetColor.r,
+        g: targetColor.g,
+        b: targetColor.b,
+        duration: 1.5,
+        ease: "power3.out"
+      });
+    }
 
     previousScrollYRef.current = currentScrollY;
   }, []);

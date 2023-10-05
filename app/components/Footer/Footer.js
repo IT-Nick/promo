@@ -10,13 +10,13 @@ function Footer() {
                         <text x="0" y="30" fontFamily="Arial" fontSize="24" fill="white">
                             Отставьте заявку
                         </text>
-                        <text x="0" y="55" fontFamily="Arial" fontSize="24" fill="white">
+                        <text x="0" y="60" fontFamily="Arial" fontSize="24" fill="white">
                             и получите скидку
                         </text>
-                        <text x="0" y="80" fontFamily="Arial" fontSize="24" fill="white">
+                        <text x="0" y="90" fontFamily="Arial" fontSize="24" fill="white">
                             35% на установку
                         </text>
-                        <text x="0" y="100" fontFamily="Arial" fontSize="24" fill="white">
+                        <text x="0" y="120" fontFamily="Arial" fontSize="24" fill="white">
                             виниров E-MAX
                         </text>
                     </svg>

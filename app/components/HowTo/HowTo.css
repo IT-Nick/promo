@@ -1,41 +1,5 @@
-.main-container {
-    height: 100vh;
+.BaVideos1 {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-}
-
-.container {
-    width: 100%;
-    max-width: 760px;  /* Set a max width to maintain original aspect ratio */
-    padding-bottom: 30.79%;  /* Maintain aspect ratio */
-    position: relative;
-    background-color: red;
-}
-
-.blue-rectangle {
-    position: absolute;
-    top: 121.79%;
-    left: 12.12%;
-    width: 23.55%;
-    height: calc(24.34% - 2px);  /* 2px reduction to avoid overflow */
-    background-color: blue;
-    transition: left 0.3s;
-}
-
-.violet-rectangle {
-    position: absolute;
-    top: 122.65%;
-    left: 17.65%;
-    width: 22.89%;
-    height: calc(23.95% - 2px);  /* 2px reduction to avoid overflow */
-    background-color: violet;
-    transition: left 0.3s;
-}
-
-/* Media query to handle screen resizing */
-@media (max-width: 800px) {
-    .blue-rectangle, .violet-rectangle {
-        left: 0;
-    }
 }

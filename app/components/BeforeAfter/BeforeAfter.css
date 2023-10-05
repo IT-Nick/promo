@@ -7,8 +7,8 @@
 
 .container {
     width: 100%;
-    max-width: 760px;  /* Set a max width to maintain original aspect ratio */
-    padding-bottom: 30.79%;  /* Maintain aspect ratio */
+    max-width: 760px;
+    padding-bottom: 30.79%;
     position: relative;
     background-color: red;
 }
@@ -18,7 +18,7 @@
     top: 121.79%;
     left: 12.12%;
     width: 23.55%;
-    height: calc(24.34% - 2px);  /* 2px reduction to avoid overflow */
+    height: calc(24.34% - 2px);
     background-color: blue;
     transition: left 0.3s;
 }
@@ -28,14 +28,126 @@
     top: 122.65%;
     left: 17.65%;
     width: 22.89%;
-    height: calc(23.95% - 2px);  /* 2px reduction to avoid overflow */
+    height: calc(23.95% - 2px);
     background-color: violet;
     transition: left 0.3s;
 }
 
-/* Media query to handle screen resizing */
-@media (max-width: 800px) {
-    .blue-rectangle, .violet-rectangle {
-        left: 0;
+.BaGeneral {
+    padding-top: 50px;
+}
+
+.BaHeader {
+    width: 100%;
+    text-align: center;
+    font-size: 14vw;
+    margin-bottom: 20px;
+    color: rgb(80, 69, 59);
+}
+
+.BaVideos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 3%;
+}
+
+.videoWrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 5px;
+    width: 100%;
+    margin-bottom: 20%;
+    flex: 0 1 calc(33.333% - 20px);
+}
+
+.videoCounter {
+    position: absolute;
+    top: -20px;
+    left: 20%;
+    transform: translateX(-40%);
+    font-size: 2em;
+    color: #FDF4E6;
+    font-weight: 700;
+    z-index: 2;
+}
+
+.videoContent {
+    position: relative;
+    width: 100%;
+    padding-top: 33%;  /* Это соотношение сторон для видео */
+}
+
+.videoCaption {
+    position: absolute;
+    bottom: 10px;  /* Регулируйте расположение, если необходимо */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 0.7em;
+    color: #FDF4E6;
+    font-weight: 700;
+    z-index: 2;
+
+}
+
+.randomVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(rotateValue);
+    pointer-events: none;
+}
+
+
+.playButton {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: white;
+    opacity: 0.7;
+    z-index: 1;
+    /* Добавлено */
+}
+
+
+
+
+/* При средней ширине экрана - 2 видео в строке */
+@media (max-width: 900px) {
+    .videoWrapper {
+        flex: 0 1 calc(33.333% - 20px);
     }
+}
+
+/* При маленькой ширине экрана - 1 видео в строке */
+@media (max-width: 600px) {
+    .videoWrapper {
+        flex: 0 1 calc(100% - 20px);
+        padding-top: 100%;
+    }
+}
+
+@keyframes loadingAnimation {
+    0% {
+        opacity: 0.3;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.3;
+    }
+}
+
+.playButton.loading {
+    animation: loadingAnimation 1s infinite;
 }

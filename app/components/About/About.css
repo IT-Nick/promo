@@ -5,6 +5,8 @@
 }
 
 .about-large-box {
+    align-self: end; /* Выравнивание по нижнему краю */
+
     width: 100%;
     grid-row: 1 / 2;
 }

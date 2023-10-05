@@ -4,11 +4,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  scroll-behavior: smooth;
-
 }
+
 :root {
-  --backgroundColor: #2A2A2A;
+  --backgroundColor: black;
   --backgroundColorSecondary: #ffffff;
   --textPrimaryColor: #ffffff;
 
@@ -17,9 +16,28 @@ body {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Helvetica Regular", Arial, sans-serif;
   background-color: var(--backgroundColor);
 }
+
+@font-face {
+  font-family: "Helvetica Bold";
+  src: url("/fonts/SFTSchriftedSansTRIAL-Regular.woff2") format("woff2"),
+    url("/fonts/SFTSchriftedSansTRIAL-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Helvetica Regular";
+  src: url("/fonts/SFTSchriftedSansTRIAL-Regular.woff2") format("woff2"),
+    url("/fonts/SFTSchriftedSansTRIAL-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 
 
 .hero__header {
@@ -65,6 +83,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .scroll-section.last {
   height: 1vh;
   width: 100vw;
