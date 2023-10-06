@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import './OurWork.css';
+import JuxtaposeComponent from './JuxtaposeComponent';
 
 function OurWork() {
     const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -22,7 +23,15 @@ function OurWork() {
             <div className='OurWork-scroll'>
                 <div className='OurWork-element'>
                     <div className='OurWork-img-container'>
-                        <div className='OurWork-img'></div>
+                        <div className='OurWork-img'>
+                            <JuxtaposeComponent
+                                id="1"
+                                initialPosition="50%" // Set the initial position of the slider (e.g., '50%' for the middle)
+                                imageUrlBefore="/OurWork/before.jpeg" // Provide the URL to the 'before' image
+                                imageUrlAfter="/OurWork/after.jpeg"   // Provide the URL to the 'after' image
+                            />
+
+                        </div>
                     </div>
                     <div className='OurWork-text-container'>
                         <div className='OurWork-text'>
@@ -36,7 +45,8 @@ function OurWork() {
                 </div>
                 <div className='OurWork-element'>
                     <div className='OurWork-img-container'>
-                        <div className='OurWork-img'></div>
+                        <div className='OurWork-img'>
+                        </div>
                     </div>
                 </div>
             </div>

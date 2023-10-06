@@ -8,6 +8,10 @@ const nextConfig = {
           'glsl-shader-loader'
         ]
       });
+      config.resolve.alias = {
+        ...config.resolve.alias,
+        'juxtaposejs': 'juxtaposejs/dist/juxtapose.min.js'
+      };
   
       return config;
     },

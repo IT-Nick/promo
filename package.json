@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "gsap": "^3.12.2",
+    "juxtaposejs": "^1.1.6",
     "locomotive-scroll": "^4.1.4",
     "next": "latest",
     "react": "latest",
