@@ -1,0 +1,43 @@
+.OurWork-scroll {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.OurWork-element {
+    padding-left: 5rem;
+    display: inline-block;
+}
+
+.OurWork-img-container {
+    width: 843px;
+    height: 393px;
+    border-radius: 76px;
+    border: 1px solid #BAA78B;
+    padding: 20px 30px;
+}
+
+.OurWork-img {
+    height: 100%;
+    width: 100%;
+    /*background-image: url(/OurWork/before.jpeg);
+    background-size: cover;*/
+    border-radius: 76px;
+}
+
+.OurWork-text-container{
+    display: flex;
+    flex-wrap: wrap;
+    white-space: wrap
+}
+
+.OurWork-text {
+    --bs-gutter-x: 1.5rem;
+    padding-right: calc(var(--bs-gutter-x) * .5);
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    flex: 0 0 auto;
+    width: 50%;
+    font-size: 20px;
+    line-height: 30px;
+    color: #FDF4E6;
+}

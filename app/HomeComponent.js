@@ -11,6 +11,8 @@ import HowTo from "./components/HowTo/HowTo";
 import Footer from "./components/Footer/Footer";
 import Loader from "./Loader/Loader";
 
+import OurWork from "./components/OurWork/OurWork";
+
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { CustomEase } from 'gsap/dist/CustomEase';
@@ -41,7 +43,9 @@ export default function HomeComponent() {
                 {/* <BASec /> */}
                 <BeforeAfter />
                 <HowTo />
+                <OurWork />
                 <Footer />
+                
             </div>
         </>
     );
