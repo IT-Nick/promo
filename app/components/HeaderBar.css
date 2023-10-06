@@ -1,4 +1,5 @@
 .header-container {
+    font-family: "Helvetica Regular";
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,7 +29,7 @@
 
 .header-button {
     padding: 10px 20px;
-    border: 2px solid white;
+    border: 1px solid #dca76d;
     background-color: transparent;
     color: white;
     font-size: 18px;

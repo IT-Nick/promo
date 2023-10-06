@@ -3,6 +3,12 @@ import React, { useRef, useEffect, useCallback } from "react";
 import * as THREE from 'three';
 import { gsap } from "gsap";
 
+
+// Функция для проверки ширины экрана мобильного устройства
+function isMobile() {
+  return window.innerWidth <= 768;
+}
+
 function throttle(func, delay) {
   let lastFunc;
   let lastRan;
@@ -199,6 +205,17 @@ float snoise(vec3 v) {
     const isNearStart = currentScrollY < 10;  // Находимся близко к началу
     const isNearEnd = (maxScrollY - currentScrollY) < 10;  // Находимся близко к концу
 
+    // Определить направление прокрутки: вверх или вниз
+    const isScrollingUp = currentScrollY < previousScrollYRef.current;
+
+    // Если устройство мобильное и прокрутка идет вверх, ничего не делать
+    if (isMobile()) {
+      if (isScrollingUp && !isNearEnd) {
+        return;
+      }
+    }
+
+
     // Если пользователь в начале или в конце страницы
     if (isNearStart || isNearEnd) {
       scaleRef.current = 1;  // минимальный размер
@@ -268,6 +285,10 @@ float snoise(vec3 v) {
     cubeGroup.add(cube);  // Сначала добавляем куб
     cubeGroup.add(edges); // Затем добавляем ребра
 
+    if (isMobile()) {
+      cubeGroupRef.current.scale.set(20, 20, 20);
+    }
+
     // Load SVG as a texture
     const loader = new THREE.TextureLoader();
     loader.load('/Cube/Logo.svg', (texture) => {
@@ -293,6 +314,11 @@ float snoise(vec3 v) {
       planeRef.current = plane;  // Сохраняем ссылку на объект plane
       // Установите начальную прозрачность логотипа в 1 после успешной загрузки
       planeMaterialRef.current.opacity = 1;
+
+      // Если устройство мобильное, устанавливаем начальный цвет логотипа на черный
+      if (isMobile()) {
+        planeMaterialRef.current.color.set(0x000000);
+      }
 
     }, undefined, (error) => {
       console.error("Error loading texture:", error);

@@ -46,6 +46,7 @@
 }
 
 .BaVideos {
+    overflow: hidden;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -66,31 +67,31 @@
 
 .videoCounter {
     position: absolute;
-    top: -20px;
+    top: -30px;
     left: 20%;
     transform: translateX(-40%);
-    font-size: 2em;
+    font-size: 4em;
     color: #FDF4E6;
     font-weight: 700;
     z-index: 2;
+    opacity: 0.6;
 }
 
 .videoContent {
     position: relative;
     width: 100%;
-    padding-top: 33%;  /* Это соотношение сторон для видео */
+    padding-top: 100%;  /* Это соотношение сторон для видео */
 }
 
 .videoCaption {
     position: absolute;
-    bottom: 10px;  /* Регулируйте расположение, если необходимо */
-    left: 50%;
-    transform: translateX(-50%);
+    right: 5%;
+    transform: translateX(-40%);
     font-size: 0.7em;
-    color: #FDF4E6;
+    color: #fdf4e6;
     font-weight: 700;
     z-index: 2;
-
+    opacity: .5;
 }
 
 .randomVideo {
@@ -118,19 +119,13 @@
 
 
 
-
-/* При средней ширине экрана - 2 видео в строке */
-@media (max-width: 900px) {
-    .videoWrapper {
-        flex: 0 1 calc(33.333% - 20px);
-    }
-}
-
 /* При маленькой ширине экрана - 1 видео в строке */
-@media (max-width: 600px) {
+@media (max-width: 800px) {
     .videoWrapper {
         flex: 0 1 calc(100% - 20px);
         padding-top: 100%;
+        padding-top: 0;
+
     }
 }
 

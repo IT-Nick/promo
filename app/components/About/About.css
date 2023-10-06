@@ -1,42 +1,88 @@
 .about-grid-container {
     padding: 50px;
     display: grid;
-    grid-template-rows: 1fr auto; /* 1fr для верхней секции, auto для нижней */
+    height: 100vh;
+    grid-template-rows: 1fr auto;
+    /* 1fr для верхней секции, auto для нижней */
 }
 
 .about-large-box {
-    align-self: end; /* Выравнивание по нижнему краю */
-
+    align-self: end;
+    /* Выравнивание по нижнему краю */
+    color: #FDF4E6;
     width: 100%;
     grid-row: 1 / 2;
+    font-family: "Helvetica Bold";
+    margin: 0;
+    font-size: 5vw;
+    line-height: 1.0;
 }
+
+
 .about-large-box svg {
-    max-height: 100%; /* или любое другое значение, которое вам подходит */
-    display: block; /* чтобы убрать возможные отступы сверху и снизу */
-    margin: auto; /* чтобы выровнять SVG по центру по вертикали внутри large-box */
+    max-height: 100%;
+    /* или любое другое значение, которое вам подходит */
+    display: block;
+    /* чтобы убрать возможные отступы сверху и снизу */
+    margin: auto;
+    /* чтобы выровнять SVG по центру по вертикали внутри large-box */
 }
 
 .about-bottom-section {
-    display: flex; /* Для горизонтального расположения дочерних элементов */
-    justify-content: space-between; /* Распределение дочерних элементов с пространством между ними */
+    display: flex;
+    /* Для горизонтального расположения дочерних элементов */
+    justify-content: space-between;
+    /* Распределение дочерних элементов с пространством между ними */
     grid-row: 2 / 3;
+    padding-top: 5vh;
+    font-weight: normal;
+
+    /* Отступ сверху */
 }
 
-.about-left-box, .about-right-box {
-    flex: 1; /* Определяет, что оба блока занимают равное пространство */
-    margin-right: 20px; /* Добавление пространства между блоками */
+.about-left-box,
+.about-right-box {
+    flex: 1;
+    /* Определяет, что оба блока занимают равное пространство */
+    margin-right: 20px;
+    /* Добавление пространства между блоками */
+    color: #FDF4E6;
+    font-family: "Helvetica Bold";
+    font-size: 1.5vw;
+    line-height: 1.5;
 }
 
 .about-right-box {
-    margin-right: 0; /* Убираем отступ справа для последнего блока */
+    display: flex;
+    /* Для горизонтального расположения дочерних элементов */
+    font-family: "Helvetica Regular";
+    color: #FDF4E6;
+    font-size: 1.3vw;
+    line-height: 1.5;
 }
 
+.about-right-box-left,
+.about-right-box-right {
+    flex: 1;
+    /* Определяет, что оба блока занимают равное пространство */
+    margin-right: 20px;
+    /* Добавление пространства между блоками */
+}
 
+.about-right-box-right {
+    margin-right: 0;
+    /* Убираем отступ справа для последнего блока */
+}
+
+.about-text-opacity {
+    opacity: 0.5;
+}
 
 @media (max-width: 768px) {
     .about-grid-container {
         padding: 10px;
         display: grid;
-        grid-template-rows: 1fr auto; /* 1fr для верхней секции, auto для нижней */
+        grid-template-rows: 1fr auto;
+        /* 1fr для верхней секции, auto для нижней */
     }
 }

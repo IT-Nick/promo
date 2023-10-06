@@ -1,4 +1,3 @@
-
 .Gcontainer {
     display: flex;
     justify-content: space-between;
@@ -7,24 +6,24 @@
     padding-right: 5vw;
     height: 100vh;
     /* Вы можете регулировать это значение, чтобы поднять или опустить секцию */
-  
+
     /* Занимает всю высоту экрана */
-  }
-  
-  .Gtext-left,
-  .Gright-section {
+}
+
+.Gtext-left,
+.Gright-section {
     flex: 0 0 50%;
     color: #FDF4E6;
-    padding: 0 2vw;
+    padding: 0 0vw;
     height: calc(100% - 10vw);
     /* Учитываем паддинги */
     display: flex;
     flex-direction: column;
     justify-content: center;
     /* Выравнивание по центру по вертикали */
-  }
-  
-  .Gright-inner {
+}
+
+.Gright-inner {
     max-width: 50%;
     /* Ограничиваем максимальную ширину до 50% */
     margin: 0 auto;
@@ -33,182 +32,92 @@
     flex-direction: column;
     height: 100%;
     justify-content: center;
-  }
-  
-  .Gtext-left p,
-  .Gright-section p {
+    margin-top: 11vh;
+    padding-left: 5vw;
+}
+
+.Gtext-left p,
+.Gright-section p {
     font-family: "Helvetica Bold";
     margin: 0;
-    font-size: 6vw;
-    line-height: 1.0;
-  }
-  
-  .little-font p {
+    font-size: 7vw;
+    line-height: 1.3;
+}
+
+.little-font p {
     font-family: "Helvetica Regular";
     font-size: 1.3vw;
-    line-height: 1.5;
-    text-align: justify;
-  }
-  
-  .Gright-section p {
+    line-height: 1.3;
+}
+
+/* .Gright-section p {
     margin-bottom: 6vw;
-    /* Отступ от текста до кнопки */
-  }
-  
-  .Gbutton {
+  } */
+
+.Gbutton {
     font-family: "Helvetica Regular";
-    padding: 1vw 2vw;
+    width: 17vw;
+    /* Устанавливаем ширину кнопки в 15% от ширины экрана */
+    height: 17vw;
+    /* Устанавливаем высоту кнопки в 15% от ширины экрана (чтобы она была круглой) */
     font-size: 1.5vw;
     cursor: pointer;
-    background-color: #555;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
-  }
-  
-  .Gbutton:hover {
-    background-color: #777;
-  }
-
-  
-
-/* .grid-container {
-    display: flex;
-    width: 100%;
-    height: 100vh;
-    padding-top: 88px;
-
-    padding-right: 50px;
-    padding-bottom: 30px;
-    padding-left: 50px;
-    box-sizing: border-box;
-    justify-content: space-between;
-}
-
-.large-box {
-    flex-basis: calc(60%);
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.right-section {
-    display: flex;
-    flex-direction: column;
-    flex-basis: calc(30%);
-    gap: 10px;
-}
-
-.top-box {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding-top: 15%;
-
-}
-
-
-
-
-
-.upper-container,
-.lower-container {
-    width: 100%;
-    height: 50%;
-    position: relative;
-}
-
-.lower-container svg {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
-
-.bottom-box {
-    flex: 1;
-    width: 100%;
-
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-
-}
-
-.magnet-button {
-    margin-bottom: 33.33%;
-    width: 160px;
-    height: 160px;
-    min-width: 150px;
-    min-height: 150px;
-    border: 2px solid #dca76d;
     background-color: transparent;
+    /* Прозрачный фон */
     color: white;
-    font-size: 20px;
-    cursor: pointer;
-    transition: transform 0.2s;
-    border-radius: 80px;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-left: 0;
-    transition: transform 0.3s ease-out;
+    border: 1px solid #dca76d;
+    /* Тонкий бордер */
+    border-radius: 50%;
+    /* Круглая форма */
+    transition: background-color 0.3s;
+}
+
+.Gbutton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    /* Легкий фон при наведении */
 }
 
 
+/* Медиа-запрос для экранов шириной до 768px (обычно это мобильные устройства) */
 @media (max-width: 768px) {
-    .grid-container {
+    .Gcontainer {
         flex-direction: column;
-        align-items: center;
-        max-height: 100vh;
-        overflow: hidden;
         padding: 10px;
-
+        padding-top: 20vh;
+        /* Обнуляем левый отступ */
+        height: 90vh;
+        align-items: flex-start;
+        /* Выравнивание содержимого по левому краю */
+        justify-content: flex-start;
     }
 
-    .right-section {
-        max-height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-    }
-
-    .magnet-button {
-        width: 171px;
-        height: 171px;
-        border-radius: 85.5px;
-        font-size: 20px;
-    }
-
-
-    .large-box {
-        margin-left: 0;
-        flex-basis: auto;
+    .Gtext-left,
+    .Gright-section {
         flex: 1;
-        margin-right: 0;
-        width: 100%;
-        justify-content: center;
+        height: auto;
+        padding: 0;
+        margin-bottom: 0vh;
+        justify-content: flex-start;
+        align-items: flex-start;
+        /* Выравнивание содержимого по левому краю */
     }
 
-    .right-section {
-        flex-basis: auto;
-        flex: 1;
-        width: 100%;
+    .Gtext-left p {
+        font-size: 14vw;
     }
 
-    .bottom-box {
-        justify-content: center;
+    .Gright-section p {
+        font-size: 4vw;
     }
 
-    .top-box {
-        width: 100%;
-
+    .Gright-inner {
+        max-width: 100%;  /* Устанавливаем максимальную ширину в 100% */
+        margin: 0;  /* Убираем автоматические отступы */
+        padding-left: 5px;
     }
-
-    .top-box svg {
-        height: 100%;
+    .Gbutton {
+        width: 65vw;
+        height: 65vw;
+        font-size: 4.5vw;
     }
-} */
+}

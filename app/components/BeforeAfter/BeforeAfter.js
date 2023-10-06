@@ -53,17 +53,37 @@ function VideoPlayer({ src, className, counter, caption }) {
 
     useLayoutEffect(() => {
         if (videoWrapperRef.current) {
-            gsap.from(videoWrapperRef.current, {
+            let rotationValue = 0;
+            let xValue = 0;  // смещение по оси X
+            const width = videoWrapperRef.current.offsetWidth;
+
+            if (videoWrapperRef.current.classList.contains('leftmost')) {
+                rotationValue = 30;
+                xValue = -width * 0.8;  // смещение на 10% ширины видео влево
+            } else if (videoWrapperRef.current.classList.contains('rightmost')) {
+                rotationValue = -30;
+                xValue = width * 0.8;  // смещение на 10% ширины видео вправо
+            }
+
+            const animation = gsap.from(videoWrapperRef.current, {
                 opacity: 0,
                 y: 50, // небольшой сдвиг вниз для эффекта "выезда"
+                rotation: rotationValue, // поворот видео
+                x: xValue,  // смещение по оси X
+                duration: 0.5,
                 scrollTrigger: {
                     trigger: videoWrapperRef.current,
                     start: "top 80%", // начать анимацию, когда верх видео достигает 80% высоты экрана
                     toggleActions: "play none none reverse", // проиграть анимацию только один раз при достижении точки
                 },
             });
+
+            return () => {
+                animation.kill();
+            };
         }
     }, []);
+
     return (
         <div className={`videoWrapper ${className}`} onClick={handlePlayPause} ref={videoWrapperRef}>
             <div className="videoCounter">{String(counter).padStart(2, '0')}</div>
@@ -102,7 +122,7 @@ function BeforeAfter() {
 
     useLayoutEffect(() => {
         if (headerRef.current) {
-            gsap.to(headerRef.current, {
+            const animation = gsap.to(headerRef.current, {
                 scrollTrigger: {
                     trigger: headerRef.current,
                     start: "top top",
@@ -113,6 +133,10 @@ function BeforeAfter() {
                     scrub: false
                 }
             });
+
+            return () => {
+                animation.kill();
+            };
         }
 
     }, []);
@@ -123,12 +147,12 @@ function BeforeAfter() {
         <div className="BaGeneral">
             <div className="BaHeader" ref={headerRef}>До и после</div>
             <div className="BaVideos">
-                <VideoPlayer className="video1 videoL1" src="/videos/video1.mp4" counter={1} caption="Подпись для видео 1" />
+                <VideoPlayer className="video1 videoL1 leftmost" src="/videos/video1.mp4" counter={1} caption="Подпись для видео 1" />
                 <VideoPlayer className="video1 videoL1" src="/videos/video12.mp4" counter={2} caption="Подпись для видео 2" />
-                <VideoPlayer className="video1 videoL1" src="/videos/video13.mp4" counter={3} caption="Подпись для видео 3" />
-                <VideoPlayer className="video1 videoL1" src="/videos/video14.mp4" counter={4} caption="Подпись для видео 4" />
+                <VideoPlayer className="video1 videoL1 rightmost" src="/videos/video13.mp4" counter={3} caption="Подпись для видео 3" />
+                <VideoPlayer className="video1 videoL1 leftmost" src="/videos/video14.mp4" counter={4} caption="Подпись для видео 4" />
                 <VideoPlayer className="video1 videoL1" src="/videos/video15.mp4" counter={5} caption="Подпись для видео 5" />
-                <VideoPlayer className="video1 videoL1" src="/videos/video16.mp4" counter={6} caption="Подпись для видео 6" />
+                <VideoPlayer className="video1 videoL1 rightmost" src="/videos/video16.mp4" counter={6} caption="Подпись для видео 6" />
                 <VideoPlayer className="video1 videoL1" src="/videos/video17.mp4" counter={7} caption="Подпись для видео 7" />
             </div>
         </div>

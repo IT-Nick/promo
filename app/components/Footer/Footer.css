@@ -26,9 +26,9 @@
 }
 
 .footerRight {
-    padding-left: 50px;
+    padding-left: 0px;
     /* добавляем отступ только слева */
-    padding-right: 50px;
+    padding-right: 0px;
     /* добавляем отступ только справа */
     display: flex;
     flex-direction: column;
