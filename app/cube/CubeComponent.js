@@ -208,20 +208,13 @@ float snoise(vec3 v) {
     // Определить направление прокрутки: вверх или вниз
     const isScrollingUp = currentScrollY < previousScrollYRef.current;
 
-    // Если устройство мобильное и прокрутка идет вверх, ничего не делать
-    if (isMobile()) {
-      if (isScrollingUp && !isNearEnd) {
-        return;
-      }
-    }
-
 
     // Если пользователь в начале или в конце страницы
-    if (isNearStart || isNearEnd) {
+    if (isNearEnd) {
       scaleRef.current = 1;  // минимальный размер
     } else {
       // Интерполируем значение масштаба на основе текущей позиции прокрутки
-      scaleRef.current = 20;
+      scaleRef.current = 30;
     }
 
     gsap.to(cubeGroupRef.current.scale, {
@@ -285,9 +278,8 @@ float snoise(vec3 v) {
     cubeGroup.add(cube);  // Сначала добавляем куб
     cubeGroup.add(edges); // Затем добавляем ребра
 
-    if (isMobile()) {
-      cubeGroupRef.current.scale.set(20, 20, 20);
-    }
+    cubeGroupRef.current.scale.set(30, 30, 30);
+
 
     // Load SVG as a texture
     const loader = new THREE.TextureLoader();
@@ -315,10 +307,9 @@ float snoise(vec3 v) {
       // Установите начальную прозрачность логотипа в 1 после успешной загрузки
       planeMaterialRef.current.opacity = 1;
 
-      // Если устройство мобильное, устанавливаем начальный цвет логотипа на черный
-      if (isMobile()) {
-        planeMaterialRef.current.color.set(0x000000);
-      }
+      // устанавливаем начальный цвет логотипа на черный
+      planeMaterialRef.current.color.set(0x000000);
+
 
     }, undefined, (error) => {
       console.error("Error loading texture:", error);

@@ -6,6 +6,8 @@ import Hero from "./components/Hero/Hero";
 import About from "./components/About/About";
 import BASec from "./components/BASec/BASec";
 import BeforeAfter from "./components/BeforeAfter/BeforeAfter";
+import Slider from "./components/Slider/Slider";
+import JobsSlider from "./components/JobsSlider/JobsSlider";
 
 import HowTo from "./components/HowTo/HowTo";
 import Footer from "./components/Footer/Footer";
@@ -38,6 +40,8 @@ export default function HomeComponent() {
             <div data-scroll-container ref={containerRef}>
                 <Hero />
                 <About />
+                <JobsSlider />
+                {/* <Slider /> */}
                 {/* <BASec /> */}
                 <BeforeAfter />
                 <HowTo />

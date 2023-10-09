@@ -57,19 +57,12 @@ function VideoPlayer({ src, className, counter, caption }) {
             let xValue = 0;  // смещение по оси X
             const width = HowTovideoWrapperRef.current.offsetWidth;
 
-            if (HowTovideoWrapperRef.current.classList.contains('leftmost')) {
-                rotationValue = 30;
-                xValue = -width * 0.8;  // смещение на 10% ширины видео влево
-            } else if (HowTovideoWrapperRef.current.classList.contains('rightmost')) {
-                rotationValue = -30;
-                xValue = width * 0.8;  // смещение на 10% ширины видео вправо
-            }
+
 
             const animation = gsap.from(HowTovideoWrapperRef.current, {
                 opacity: 0,
                 y: 50, // небольшой сдвиг вниз для эффекта "выезда"
                 rotation: rotationValue, // поворот видео
-                x: xValue,  // смещение по оси X
                 duration: 0.5,
                 scrollTrigger: {
                     trigger: HowTovideoWrapperRef.current,
@@ -120,7 +113,7 @@ function HowTo() {
             const animation = gsap.to(HowToheaderRef.current, {
                 scrollTrigger: {
                     trigger: HowToheaderRef.current,
-                    start: "top top",
+                    start: "top 15%",
                     end: () => `+=${document.querySelector(".BaVideos1").offsetHeight - HowToheaderRef.current.offsetHeight}`,
                     pin: true,  // Закрепляем элемент
                     pinSpacing: false,

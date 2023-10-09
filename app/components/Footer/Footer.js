@@ -6,20 +6,10 @@ function Footer() {
         <div className="footerGeneral">
             <div className="footerTop">
                 <div className="footerLeft">
-                    <svg viewBox="0 0 400 138" xmlns="http://www.w3.org/2000/svg">
-                        <text x="0" y="30" fontFamily="Arial" fontSize="24" fill="white">
-                            Отставьте заявку
-                        </text>
-                        <text x="0" y="60" fontFamily="Arial" fontSize="24" fill="white">
-                            и получите скидку
-                        </text>
-                        <text x="0" y="90" fontFamily="Arial" fontSize="24" fill="white">
-                            35% на установку
-                        </text>
-                        <text x="0" y="120" fontFamily="Arial" fontSize="24" fill="white">
-                            виниров E-MAX
-                        </text>
-                    </svg>
+                    <p className="footerText">Отставьте заявку</p>
+                    <p className="footerText">и получите скидку</p>
+                    <p className="footerText">35% на установку</p>
+                    <p className="footerText">виниров E-MAX</p>
                 </div>
                 <div className="footerRight">
                     <input type="text" placeholder="Как вас зовут?" />
@@ -28,12 +18,16 @@ function Footer() {
                 </div>
             </div>
             <div className="footerFooter">
-                <span>Политика конфиденциальности</span>
-                <span>ООО &ldquo;Лаборатория улыбок и красоты&rdquo;<br />ВСЕ ПРАВА ЗАЩИЩЕНЫ, 2023</span>
-                <span>Сайт клиники Dr. Elmar</span>
+                <span className="footerLink">Политика конфиденциальности</span>
+                <div className="centeredText">
+                    <span>ООО &ldquo;Лаборатория улыбок и красоты&rdquo;</span>
+                    <span>ВСЕ ПРАВА ЗАЩИЩЕНЫ, 2023</span>
+                </div>
+                <span className="footerLink">Сайт клиники Dr. Elmar</span>
             </div>
         </div>
     );
 }
+
 
 export default Footer;

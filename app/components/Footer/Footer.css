@@ -1,21 +1,17 @@
 .footerGeneral {
-    padding: 50px;
+    padding-left: 5vw;
+    padding-right: 5vw;
     display: flex;
     flex-direction: column;
-    /* устанавливаем направление столбца */
     justify-content: space-between;
-    height: calc(100vh - 100px);
-    /* 100px — это двойной padding (сверху и снизу) */
+    height: calc(100vh - 6rem);
 }
 
 .footerLeft,
 .footerRight {
     flex: 1;
-    /* Занимают одинаковое место */
-    max-height: calc(100vh - 150px);
-    /* уменьшим максимальную высоту, чтобы контент не выходил за границы экрана */
+    max-height: calc(100vh - 9rem);
     overflow-y: hidden;
-    /* добавим прокрутку, если контент будет слишком большим */
 }
 
 .footerTop {
@@ -26,70 +22,76 @@
 }
 
 .footerRight {
-    padding-left: 0px;
-    /* добавляем отступ только слева */
-    padding-right: 0px;
-    /* добавляем отступ только справа */
+    padding-left: 0;
+    padding-right: 0;
     display: flex;
     flex-direction: column;
-    /* отступ между элементами */
     box-sizing: border-box;
-    /* чтобы паддинги включались в общую высоту элемента */
-    max-width: 400px;
-    /* фиксированная максимальная ширина */
+    max-width: 25rem;
     margin-left: auto;
-    /* автоматический отступ слева */
     margin-right: auto;
-    /* автоматический отступ справа */
 }
 
 .footerFooter {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding-top: 70px;
-    /* Увеличивает верхний внутренний отступ до 100% от высоты контейнера */
+    padding-top: 4.375rem;
+    position: relative;
+    /* Добавьте это свойство */
+    justify-content: space-between;
+    padding-bottom: 2rem;
+
 }
 
-.footerFooter span:nth-child(1) {
-    color: #FDF4E666;
-    text-decoration: underline;
+
+
+
+.footerFooter>* {
+    margin: 0 1rem;
+    /* добавить небольшой отступ между элементами */
 }
 
-.footerFooter span:nth-child(2) {
-    color: #FDF4E666;
-    text-align: center;
+.footerFooter> :first-child {
+    margin-right: auto;
+    /* установить автоматический отступ справа для первого элемента */
 }
 
+.footerFooter> :last-child {
+    margin-left: auto;
+    /* установить автоматический отступ слева для последнего элемента */
+}
+
+
+.footerFooter span:nth-child(1),
 .footerFooter span:nth-child(3) {
     color: #FDF4E6;
     text-decoration: underline;
+    font-size: 1rem;
+    opacity: 0.5;
 }
 
-
-
+.footerFooter span:nth-child(2) {
+    color: #FDF4E6;
+    text-align: center;
+    font-size: 1rem;
+}
 
 .footerRight input {
     text-align: left;
-
-    /* выравнивание текста по левому краю */
-    /* уменьшенный отступ слева */
-
 }
-
 
 .footerRight input,
 .footerRight button {
-    max-width: 600px;
-    /* увеличенная максимальная ширина */
+    max-width: 80vw;
+    /* Установите максимальную ширину в зависимости от ширины окна просмотра */
     width: auto;
     height: auto;
-    padding: 25px 50px;
+    padding: 1.5625rem 3.125rem;
     border: 1px solid #BAA78B59;
     background-color: transparent;
     color: white;
-    font-size: 16px;
-    margin-bottom: 5px;
+    font-size: 1rem;
+    margin-bottom: 0.3125rem;
     box-sizing: border-box;
 }
 
@@ -97,4 +99,77 @@
     cursor: pointer;
     margin-bottom: 0;
     background-color: #dca76d;
+}
+
+.footerText {
+    color: #FDF4E6;
+    font-family: "Helvetica Bold";
+    line-height: 1.0;
+    font-size: 4vw;
+    /* Увеличиваем размер шрифта */
+    color: white;
+    margin: 1rem 0;
+}
+
+
+
+@media (max-width: 768px) {
+    .footerTop {
+        height: auto;
+        flex-direction: column;
+        align-items: normal;
+    }
+
+    .footerLeft,
+    .footerRight {
+        margin: 1rem 0;
+        text-align: left;
+        flex: initial;
+        max-height: initial;
+        overflow-y: visible;
+
+    }
+
+    .footerRight {
+        max-width: 100%;
+    }
+
+    .footerFooter {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        padding-bottom: 8vh;
+    }
+
+    /* Скрыть ссылки на мобильных устройствах */
+    .footerFooter span:nth-child(1),
+    .footerFooter span:nth-child(3) {
+        display: none;
+    }
+
+    .footerRight input,
+    .footerRight button {
+        max-width: none;
+    }
+
+    .footerText {
+        font-size: 8vw;
+        /* Удвоение размера шрифта на мобильных устройствах */
+    }
+}
+
+
+.centeredText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Центрирование элемента */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.centeredText span {
+    text-align: center;
 }

@@ -1,0 +1,184 @@
+.SliderContainer {
+    position: relative;
+    width: 100%;
+}
+
+.SliderControls {
+    position: absolute;
+    top: 6.5vh;
+    right: 5vw;
+    /* установлен отступ слева 5vw */
+    display: flex;
+    align-items: center;
+    z-index: 10;
+}
+
+
+.SliderPrevButton {
+    font-family: "Helvetica Regular";
+    background-color: transparent;
+    color: white;
+    border: 1px solid #dca76d;
+    transition: background-color 0.3s;
+    padding-top: 0.7vw;
+    padding-bottom: 0.7vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: 1vw;
+    font-size: 3vw;
+    /* добавлен горизонтальный отступ справа */
+}
+
+.SliderNextButton {
+    font-family: "Helvetica Regular";
+    background-color: transparent;
+    color: white;
+    border: 1px solid #dca76d;
+    transition: background-color 0.3s;
+    padding-top: 0.7vw;
+    padding-bottom: 0.7vw;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    margin-left: 1vw;
+    font-size: 3vw;
+    /* добавлен горизонтальный отступ слева */
+}
+
+.SliderViewport {
+    overflow: hidden;
+    position: relative;
+    margin-top: 30vw;
+    /* Увеличиваем верхний отступ, чтобы опустить карточки ниже */
+
+}
+
+
+
+.SliderTrack {
+    display: flex;
+    /* Учитываем дополнительный отступ слева */
+}
+
+
+
+.SliderImageWrapper {
+    flex-shrink: 0;
+    width: calc(70vw / 1.5);
+    margin-right: calc(6vw / 1.5);
+    /* увеличиваем отступ в 3 раза */
+    box-sizing: border-box;
+}
+
+
+.SliderProgressBarContainer {
+    position: absolute;
+    top: 0;
+    left: 5vw;
+    right: 5vw;
+    height: 5px;
+    background-color: rgba(255, 255, 255, 0.5);
+    z-index: 2;
+}
+
+.SliderProgressBar {
+    height: 100%;
+    background-color: white;
+}
+
+
+.SliderRectangle {
+    position: relative;
+    width: calc(70vw / 1.5);
+    height: calc((70vw * 2/3) * 0.75 / 1.5);
+    background-color: transparent;
+    border: 1px solid #dca76d;
+    border-radius: 15px;
+    overflow: hidden;
+    user-select: none;
+
+    /* Это предотвращает выход изображения за пределы контейнера */
+}
+
+.SliderImageWrapper,
+.ImageLayer {
+    user-select: none;
+}
+
+.ImageLayer {
+    will-change: clip-path;
+}
+
+
+.SliderImageWrapper:last-child {
+    margin-right: 0;
+}
+
+
+.SliderTextContainer {
+    position: relative;
+    z-index: 9;
+    height: 20vh;
+    /* Высота контейнера соответствует высоте текста */
+
+}
+
+.SliderTextBefore,
+.SliderTextAfter {
+    position: absolute;
+    top: 0;
+    color: #FDF4E6;
+    font-family: "Helvetica Bold";
+    font-size: 4vw;
+    line-height: 1.0;
+    pointer-events: none;
+}
+
+.SliderTextBefore {
+    left: 5vw;
+    margin-top: 6.5vh;
+}
+
+.ImageLayer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.SliderBar {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: #dca76d;
+    /* Добавлено для плавного движения слайдера */
+}
+
+
+.SliderHandle {
+    width: 7vw;
+    height: 7vw;
+    background: transparent;
+    border: 2px solid #dca76d;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 1002;
+}
+
+
+
+.ImageLayer img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}

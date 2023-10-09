@@ -57,19 +57,11 @@ function VideoPlayer({ src, className, counter, caption }) {
             let xValue = 0;  // смещение по оси X
             const width = videoWrapperRef.current.offsetWidth;
 
-            if (videoWrapperRef.current.classList.contains('leftmost')) {
-                rotationValue = 30;
-                xValue = -width * 0.8;  // смещение на 10% ширины видео влево
-            } else if (videoWrapperRef.current.classList.contains('rightmost')) {
-                rotationValue = -30;
-                xValue = width * 0.8;  // смещение на 10% ширины видео вправо
-            }
 
             const animation = gsap.from(videoWrapperRef.current, {
                 opacity: 0,
                 y: 50, // небольшой сдвиг вниз для эффекта "выезда"
                 rotation: rotationValue, // поворот видео
-                x: xValue,  // смещение по оси X
                 duration: 0.5,
                 scrollTrigger: {
                     trigger: videoWrapperRef.current,
@@ -125,7 +117,7 @@ function BeforeAfter() {
             const animation = gsap.to(headerRef.current, {
                 scrollTrigger: {
                     trigger: headerRef.current,
-                    start: "top top",
+                    start: "top 15%",
                     end: () => `+=${document.querySelector(".BaVideos").offsetHeight - headerRef.current.offsetHeight}`,
                     pin: true,  // Закрепляем элемент
                     pinSpacing: false,

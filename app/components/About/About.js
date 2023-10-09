@@ -32,12 +32,13 @@ function About() {
                 opacity: 0,
                 y: 30,
                 stagger: 0.3,
+                duration: 1,
                 scrollTrigger: {
                     trigger: textRefBig.current,
-                    start: "top-=50 100%",
-                    end: "bottom+=5 80%",
+                    start: "top-=70 90%",
+                    end: "bottom+=40 60%",
                     markers: false,
-                    scrub: 1,
+                    scrub: 5,
                     toggleActions: "play none none none"
                 }
             });
@@ -48,14 +49,13 @@ function About() {
 
     }, [isMobile]);
 
+
     return (
         <div className="about-grid-container">
             <div className="about-large-box">
                 <div ref={textRefBig}>
-                    <p><span class="about-text-opacity">Звезды и знаменитости,</span></p>
-                    <p>доверяющие <span class="about-text-opacity">нам свои</span> улыбки,</p>
-                    <p><span class="about-text-opacity">люди состоятельные. Но даже они</span></p>
-                    <p>ценят <span class="about-text-opacity">и считают</span> свои деньги.</p>
+                    <font style={{ opacity: "0.5" }}>Звезды и знаменитости</font> доверяющие <font style={{ opacity: "0.5" }}>нам свои</font> улыбки,&nbsp;
+                    <font style={{ opacity: "0.5" }}>люди состоятельные. Но даже они </font> ценят <font style={{ opacity: "0.5" }}>и считают</font> свои деньги.
                 </div>
             </div>
             <div className="about-bottom-section">

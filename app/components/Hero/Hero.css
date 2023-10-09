@@ -48,6 +48,7 @@
     font-family: "Helvetica Regular";
     font-size: 1.3vw;
     line-height: 1.3;
+    opacity: 0.8;
 }
 
 /* .Gright-section p {
@@ -85,7 +86,7 @@
         padding: 10px;
         padding-top: 20vh;
         /* Обнуляем левый отступ */
-        height: 90vh;
+        height: fit-content;
         align-items: flex-start;
         /* Выравнивание содержимого по левому краю */
         justify-content: flex-start;
@@ -111,13 +112,32 @@
     }
 
     .Gright-inner {
-        max-width: 100%;  /* Устанавливаем максимальную ширину в 100% */
-        margin: 0;  /* Убираем автоматические отступы */
+        max-width: 100%;
+        /* Устанавливаем максимальную ширину в 100% */
+        margin: 0;
+        /* Убираем автоматические отступы */
         padding-left: 5px;
     }
+
     .Gbutton {
         width: 65vw;
         height: 65vw;
         font-size: 4.5vw;
     }
+    .little-font p {
+       display: none;
+    }
+}
+
+
+.gradientText {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.5), #FDF4E6, #dca76d, rgba(255, 255, 255, 0.5));
+    color: transparent;
+    -webkit-background-clip: text;
+    background-size: 400% auto;
+}
+
+
+.svg-text {
+    font-family: "Helvetica Regular", sans-serif;
 }
